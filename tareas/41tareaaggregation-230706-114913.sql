@@ -94,8 +94,35 @@ ORDER BY
 -- Tip2: Ver Operadores de Comparación en la hoja de atajos (primera página)
 
 
+SELECT 
+	first_name,
+	last_name,
+	country
+FROM 
+	users
+WHERE 
+	country IN ('Mexico', 'Honduras', 'Costa Rica')
+ORDER BY
+	country ASC,
+	first_name ASC,
+	last_name ASC;
+
 
 
 
 -- 9. Del query anterior, cuente cuántas personas hay por país
 -- Ordene los resultados por País asc
+
+SELECT 
+	COUNT(*),
+	country
+FROM 
+	users
+WHERE 
+	country IN ('Mexico', 'Honduras', 'Costa Rica')
+GROUP BY
+	country
+ORDER BY
+	country ASC;
+
+

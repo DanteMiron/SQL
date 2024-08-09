@@ -43,4 +43,11 @@ WHERE
 
 -- 6. Borrar el último registro de la tabla
 
+SELECT max(id) from users;
+
+DELETE FROM users
+WHERE id = (SELECT max(id) from users);
+
+SELECT * FROM users;
+
  
