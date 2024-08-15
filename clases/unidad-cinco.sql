@@ -83,3 +83,35 @@ continent
 CREATE UNIQUE INDEX "unique_country_continent" ON country(
 name
 );
+
+-- creacion de indices compuetos
+
+select * 
+from city
+where 
+	name = 'Jinzhou' AND
+	countrycode = 'CHN' AND
+	district = 'Liaoning';
+
+
+create unique index "unique_name_countrycode_district" on city (
+	name, countrycode, district
+);
+
+create index "index_district" on city (
+	district
+);
+
+
+-- llaves foraneas
+
+ALTER TABLE countrylanguage
+	ADD CONSTRAINT fk_country_code
+	FOREIGN KEY ( countrycode )
+	REFERENCES country ( code );
+
+ALTER TABLE city
+	ADD CONSTRAINT fk_country_code
+	FOREIGN KEY ( countrycode )
+	REFERENCES country (code) ;
+
