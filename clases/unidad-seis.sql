@@ -51,6 +51,52 @@ FROM
     
     
 ALTER TABLE
-    country DROP CONSTRAINT country_continent_check;
+
+
+--- tarea
+
+
+-- Tarea con countryLanguage
+
+-- Crear la tabla de language
+
+-- Sequence and defined type
+CREATE SEQUENCE IF NOT EXISTS language_code_seq;
+
+
+-- Table Definition
+CREATE TABLE "public"."language" (
+    "code" int4 NOT NULL DEFAULT 	nextval('language_code_seq'::regclass),
+    "name" text NOT NULL,
+    PRIMARY KEY ("code")
+);
+
+-- Crear una columna en countrylanguage
+ALTER TABLE countrylanguage
+ADD COLUMN languagecode varchar(3);
+
+
+-- Empezar con el select para confirmar lo que vamos a actualizar
+select distinct a."language" from countrylanguage a order by a."language";
+
+-- Actualizar todos los registros
+insert into 
+	language ("name")
+select distinct a."language" from countrylanguage a order by a."language";
+
+-- Cambiar tipo de dato en countrylanguage - languagecode por int4
+
+alter table countrylanguage
+alter COLUMN languagecode type int4
+USING languagecode::integer;
+
+select language, countrycode, (select code from language b where b."name" = a."language" ) from countrylanguage a;
+
+update countrylanguage a
+set languagecode = (select code from language b where b."name" = a."language");
+
+-- Crear el forening key y constraints de no nulo el language_code
+
+-- Revisar lo creado
     
     
