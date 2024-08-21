@@ -80,3 +80,12 @@ on a.continent = b.code
 where b.name like '%America%')
 
 order by Total ASC;
+
+--tarea 2
+
+select count(*), b.name from city a
+inner join country b
+on a.countrycode = b.code
+group by b.name
+order by count(*) DESC
+limit 1;
