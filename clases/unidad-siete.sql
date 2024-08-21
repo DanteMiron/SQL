@@ -21,7 +21,6 @@ select a.name as country, b.name as continent from country a
 inner join continent b on a.continent = b.code
 order by a.name asc;
 
-<<<<<<< HEAD
 -- tareas 
 
 -- ¿Cuál es el idioma (y código del idioma) oficial más hablado por diferentes países en Europa?
@@ -54,7 +53,6 @@ limit 1;
 select * from country a
 inner join countrylanguage b on a.code = b.countrycode
 where b.isofficial = true AND a.continent = 5 AND b.languagecode = 135;
-=======
 --- FULL OUTER JOIN
 
 select
@@ -114,4 +112,3 @@ on a.continent = b.code
 where b.name like '%America%')
 
 order by Total ASC;
->>>>>>> 493deb5df5a67f6d1757a698a1bdd981d582a64f
